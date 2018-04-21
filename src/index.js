@@ -1,24 +1,26 @@
+/* eslint-disable */
 import ReactDOM from 'react-dom'
 import React from 'react'
+import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
-const defaultState = { checked: false }
-const reducer = (state = defaultState, action) => {
-	switch(action.type) {
+import App from './App'
+
+const defaultState = { appName: 'social net' }
+
+const reducer = function (state = defaultState, action) {
+	switch (action.type) {
 		case 'TOGGLE':
 			return { ...state, checked: !state.checked }
 	}
+	return state
 }
 
 const store = createStore(reducer)
 
 
-class App extends React.Component {
-	render() {
-		return (
-			<h1>Hello, World!</h1>
-		)
-	}
-}
-
-ReactDOM.render((<App/>), document.getElementById('root'))
+ReactDOM.render((
+	<Provider store={ store }>
+		<App />
+	</Provider>
+), document.getElementById('root'))
