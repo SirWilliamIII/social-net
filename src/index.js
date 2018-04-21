@@ -6,13 +6,9 @@ import { createStore } from 'redux'
 
 import App from './App'
 
-const defaultState = { appName: 'social net' }
+const defaultState = { appName: 'social net', articles: null }
 
-const reducer = function (state = defaultState, action) {
-	switch (action.type) {
-		case 'TOGGLE':
-			return { ...state, checked: !state.checked }
-	}
+const reducer = (state = defaultState, action) => {
 	return state
 }
 
