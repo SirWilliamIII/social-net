@@ -11,7 +11,7 @@ class App extends Component {
 		return (
 			<div>
 				<Header appName={ this.props.appName }/>
-				<Home/>
+				<Home appName={ this.props.appName }/>
 			</div>
 		)
 	}

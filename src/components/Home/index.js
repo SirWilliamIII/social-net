@@ -3,21 +3,31 @@ import { connect } from 'react-redux'
 
 import Banner from './Banner'
 import MainView from './MainView'
+import agent from '../../agent'
 
+//const Promise = global.Promise
 
 const mapStateToProps = state => ({ appName: state.appName })
 
+const mapDispatchToProps = dispatch => ({
+	onLoad: payload => dispatch({ type: 'HOME_PAGE_LOADED', payload })
+})
+
 class Home extends Component {
+	componentWillMount() {
+		this.props.onLoad(agent.Articles.all())
+	}
+
 	render() {
-		return(
+		return (
 			<div className="home-page">
 				<Banner appName={ this.props.appName }/>
 				<div className="container page">
 					<div className="row">
-						<MainView/>
+						<MainView articles={ this.props.articles }/>
 						<div className="col-md-3">
 							<div className="sidebar">
-								<p>Popular ass tags</p>
+								<p>Popular-ass Tags</p>
 							</div>
 						</div>
 					</div>
@@ -28,4 +38,4 @@ class Home extends Component {
 }
 
 
-export default connect(mapStateToProps, () => ({}))(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
