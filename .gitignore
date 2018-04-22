@@ -3,6 +3,7 @@
 .idea/
 .vscode/
 
+src/agent.js
 # dependencies
 node_modules
 
