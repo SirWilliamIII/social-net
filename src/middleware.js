@@ -2,6 +2,7 @@ const promiseMiddleware = store => next => action => {
 	if(isPromise(action.payload)) {
 		action.payload.then(
 			res => {
+				console.log('YES!')
 				action.payload = res
 				store.dispatch(action)
 			},
