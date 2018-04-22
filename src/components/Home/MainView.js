@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import ArticleList from './ArticleList'
 
-
 const mapStateToProps = state => ({
 	articles: state.articles
 })
@@ -19,7 +18,7 @@ const MainView = props => {
 					</li>
 				</ul>
 			</div>
-			<ArticleList articles={ props.articles }/>
+			<ArticleList articles={props.articles} />
 		</div>
 	)
 }

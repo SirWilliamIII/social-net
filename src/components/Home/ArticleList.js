@@ -1,31 +1,19 @@
 import React from 'react'
-
+import ArticlePreview from './ArticlePreview'
 
 const ArticleList = props => {
-	if(!props.articles) {
-		return (
-			<div className="article-preview">
-				Loading...
-			</div>
-		)
+	if (!props.articles) {
+		return <div className="article-preview">Loading...</div>
 	}
-	if(props.articles.length === 0) {
-		return (
-			<div className="article-preview">
-				No articles here...
-			</div>
-		)
+	if (props.articles.length === 0) {
+		return <div className="article-preview">No articles here...</div>
 	}
 
 	return (
 		<div>
-			{
-				props.articles.map(article => {
-					return (
-						<h2>{ article.title }</h2>
-					)
-				})
-			}
+			{props.articles.map(article => (
+				<ArticlePreview article={article} />
+			))}
 		</div>
 	)
 }
