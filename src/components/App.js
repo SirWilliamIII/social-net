@@ -5,7 +5,7 @@ import Header from './Header'
 
 
 
-const mapStateToProps = state => ({ appName: state.appName })
+const mapStateToProps = state => ({ appName: state.common.appName })
 
 class App extends Component {
 	render() {

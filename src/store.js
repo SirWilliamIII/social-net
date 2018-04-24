@@ -1,19 +1,21 @@
 /* eslint-disable */
 import { promiseMiddleware } from './middleware'
-import { applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, createStore, combineReducers } from 'redux'
+import auth from './reducers/auth'
+import common from './reducers/common'
+import home from './reducers/home'
+
 
 // import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 const defaultState = { appName: 'social net', articles: null }
 
-const reducer = function(state = defaultState, action) {
-	switch(action.type) {
-		case 'HOME_PAGE_LOADED':
-			return { ...state, articles: action.payload.articles }
-	}
-	return state
-}
+const reducer = combineReducers({
+	auth,
+	common,
+	home
+})
 
 // const devTools = composeWithDevTools()
 

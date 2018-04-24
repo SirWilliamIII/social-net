@@ -7,7 +7,7 @@ import agent from '../../agent'
 
 //const Promise = global.Promise
 
-const mapStateToProps = state => ({ appName: state.appName })
+const mapStateToProps = state => ({ appName: state.common.appName })
 
 const mapDispatchToProps = dispatch => ({
 	onLoad: payload => dispatch({ type: 'HOME_PAGE_LOADED', payload })
