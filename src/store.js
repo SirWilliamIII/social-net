@@ -1,5 +1,9 @@
+/* eslint-disable */
 import { promiseMiddleware } from './middleware'
-import { applyMiddleware, createStore } from 'redux/index'
+import { applyMiddleware, createStore } from 'redux'
+
+// import { composeWithDevTools } from 'redux-devtools-extension';
+
 
 const defaultState = { appName: 'social net', articles: null }
 
@@ -11,6 +15,9 @@ const reducer = function(state = defaultState, action) {
 	return state
 }
 
-const store = createStore(reducer, applyMiddleware(promiseMiddleware))
+// const devTools = composeWithDevTools()
+
+const store = createStore(reducer,
+	applyMiddleware(promiseMiddleware))
 
 export default store
