@@ -3,7 +3,7 @@ import superagentPromise from 'superagent-promise'
 
 const superagent = superagentPromise(_superagent, global.Promise)
 
-const API_ROOT = 'http://conduit.productionready.io/api'
+const API_ROOT = 'http://localhost:3000'
 
 const responseBody = res => res.body
 

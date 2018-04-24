@@ -2,6 +2,7 @@ import React from 'react'
 import ArticlePreview from './ArticlePreview'
 
 const ArticleList = props => {
+	console.log(`HELLO!! Props: ${props[0]}`)
 	if (!props.articles) {
 		return <div className="article-preview">Loading...</div>
 	}
@@ -12,7 +13,7 @@ const ArticleList = props => {
 	return (
 		<div>
 			{props.articles.map(article => (
-				<ArticlePreview article={article} />
+				<ArticlePreview articles={article} />
 			))}
 		</div>
 	)

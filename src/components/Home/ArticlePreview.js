@@ -1,7 +1,9 @@
 import React from 'react'
 
 const ArticlePreview = props => {
-	let article = props.article
+	let article = props.articles
+	console.log('HELLO')
+	console.log(article)
 	return (
 		<div className="article-preview">
 			<div className="article-meta">
