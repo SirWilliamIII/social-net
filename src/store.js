@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { promiseMiddleware } from './middleware'
+import { promiseMiddleware, localStorageMiddleware } from './middleware'
 import { applyMiddleware, createStore, combineReducers } from 'redux'
 import auth from './reducers/auth'
 import common from './reducers/common'
@@ -19,7 +19,9 @@ const reducer = combineReducers({
 
 // const devTools = composeWithDevTools()
 
-const store = createStore(reducer,
-	applyMiddleware(promiseMiddleware))
+const middleware = applyMiddleware(promiseMiddleware, localStorageMiddleware)
+
+const store = createStore(reducer, middleware)
+
 
 export default store

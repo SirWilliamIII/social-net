@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import agent from '../agent'
 import ListErrors from './ListErrors'
-import { Link } from 'react-router'
 
 const mapStateToProps = state => ({ ...state.auth })
 
@@ -16,31 +16,23 @@ const mapDispatchToProps = dispatch => ({
 	onSubmit:         (username, email, password) => {
 		const payload = agent.Auth.register(username, email, password)
 		dispatch({ type: 'REGISTER', payload })
-	},
-	onUnload:         () =>
-		                  dispatch({ type: 'REGISTER_PAGE_UNLOADED' })
+	}
 })
 
-class Register extends Component {
+class Register extends React.Component {
 	constructor() {
 		super()
-		this.changeEmail = e => this.props.onChangeEmail(e.target.value)
-		this.changePassword = e => this.props.onChangePassword(e.target.value)
-		this.changeUsername = e => this.props.onChangeUsername(e.target.value)
-		this.submitForm = (username, email, password) => e => {
-			e.preventDefault()
+		this.changeEmail = event => this.props.onChangeEmail(event.target.value)
+		this.changePassword = event => this.props.onChangePassword(event.target.value)
+		this.changeUsername = event => this.props.onChangeUsername(event.target.value)
+		this.submitForm = (username, email, password) => event => {
+			event.preventDefault()
 			this.props.onSubmit(username, email, password)
 		}
 	}
 
-	componentWillUnmount() {
-		this.props.onUnload()
-	}
-
 	render() {
-		const email = this.props.email
-		const password = this.props.password
-		const username = this.props.username
+		const { email, username, password } = this.props
 
 		return (
 			<div className="auth-page">
@@ -64,7 +56,8 @@ class Register extends Component {
 											type="text"
 											placeholder="Username"
 											value={ this.props.username }
-											onChange={ this.changeUsername }/>
+											onChange={ this.changeUsername }
+											autoComplete="off"/>
 									</fieldset>
 
 									<fieldset className="form-group">
@@ -73,7 +66,8 @@ class Register extends Component {
 											type="email"
 											placeholder="Email"
 											value={ this.props.email }
-											onChange={ this.changeEmail }/>
+											onChange={ this.changeEmail }
+											autoComplete="off"/>
 									</fieldset>
 
 									<fieldset className="form-group">
@@ -82,7 +76,8 @@ class Register extends Component {
 											type="password"
 											placeholder="Password"
 											value={ this.props.password }
-											onChange={ this.changePassword }/>
+											onChange={ this.changePassword }
+											autoComplete="off"/>
 									</fieldset>
 
 									<button

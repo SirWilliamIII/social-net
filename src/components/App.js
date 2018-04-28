@@ -20,29 +20,26 @@ const mapDispatchToProps = dispatch => ({
 
 class App extends React.Component {
 	componentWillMount() {
-		const token = window.localStorage.getItem('jwt')
+		const token = window.localStorage.getItem('jwt');
 		if(token) {
-			agent.setToken(token)
+			agent.setToken(token);
 		}
 
-		this.props.onLoad(token ? agent.Auth.current() : null, token)
+		this.props.onLoad(token ? agent.Auth.current() : null, token);
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.redirectTo) {
-			this.context.router.replace(nextProps.redirectTo)
-			this.props.onRedirect()
+			this.context.router.replace(nextProps.redirectTo);
+			this.props.onRedirect();
 		}
 	}
 
 	render() {
-		return (
-			<div>
-				<Header
-					currentUser={ this.props.currentUser }
-					appName={ this.props.appName }/> { this.props.children }
-			</div>
-		)
+		return <div>
+			<Header
+				appName={ this.props.appName }/> { this.props.children }
+		</div>
 	}
 }
 
