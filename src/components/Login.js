@@ -5,9 +5,12 @@ import ListErrors from './ListErrors'
 
 const mapStateToProps = state => ({ ...state.auth })
 const mapDispatchToProps = dispatch => ({
-	onChangeEmail:    val => dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'email', val }),
-	onChangePassword: val => dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'password', val }),
-	onSubmitForm:     (email, password) => dispatch({ type: 'LOGIN', payload: agent.Auth.login(email, password) })
+	onChangeEmail:    value =>
+		dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'email', value }),
+	onChangePassword: value =>
+		dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'password', value }),
+	onSubmitForm:     (email, password) =>
+		dispatch({ type: 'LOGIN', payload: agent.Auth.login(email, password) })
 })
 
 class Login extends Component {
@@ -19,7 +22,6 @@ class Login extends Component {
 			e.preventDefault()
 			this.props.onSubmitForm(email, password)
 		}
-
 	}
 
 	render() {
@@ -36,7 +38,7 @@ class Login extends Component {
 							<p className="text-xs-center">
 								<a href=""> Need account? </a>
 							</p>
-							<ListErrors errors={ this.props.errors } />
+							<ListErrors errors={ this.props.errors }/>
 							<form onSubmit={ this.submitForm(email, password) }>
 								<fieldset className="form-group">
 									<input
@@ -54,7 +56,7 @@ class Login extends Component {
 								<button
 									className="btn btn-lg btn-primary pull-xs-right"
 									type="submit"
-								disabled={ this.props.inProgress }>
+									disabled={ this.props.inProgress }>
 									Sign In
 								</button>
 							</form>
