@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import Banner from './Banner'
 import MainView from './MainView'
 import agent from '../../agent'
@@ -17,8 +16,6 @@ const mapDispatchToProps = dispatch => ({
 
 class Home extends Component {
 	componentWillMount() {
-		console.log('COMPONENT ABOUT TO MOUNT')
-		console.log(this.props.articles)
 		this.props.onLoad(agent.Articles.all())
 	}
 

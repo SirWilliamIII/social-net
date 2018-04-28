@@ -1,6 +1,5 @@
-
 const promiseMiddleware = store => next => action => {
-	if (isPromise(action.payload)) {
+	if(isPromise(action.payload)) {
 		store.dispatch({ type: 'ASYNC_START', subtype: action.type })
 		action.payload.then(
 			res => {
@@ -9,9 +8,8 @@ const promiseMiddleware = store => next => action => {
 				store.dispatch(action)
 			},
 			error => {
-				console.log('ERROR')
 				action.error = true
-				action.payload = error.res.body
+				action.payload = error.response.body
 				store.dispatch(action)
 			}
 		)

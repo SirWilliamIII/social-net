@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-export default class Header extends Component {
+class Header extends Component {
 	render() {
 		return (
 			<nav className="navbar navbar-light">
@@ -13,6 +13,7 @@ export default class Header extends Component {
 						<li className="nav-item">
 							<Link to="/" className="nav-link">Home</Link>
 						</li>
+
 						<li className="nav-item">
 							<Link to="login" className="nav-link"> Login </Link>
 						</li>
@@ -22,3 +23,5 @@ export default class Header extends Component {
 		)
 	}
 }
+
+export default Header
