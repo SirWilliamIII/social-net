@@ -31,6 +31,10 @@ class Register extends React.Component {
 		}
 	}
 
+	componentWillUnmount() {
+		this.props.onUnload();
+	}
+
 	render() {
 		const { email, username, password } = this.props
 

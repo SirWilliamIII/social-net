@@ -9,9 +9,6 @@ import settings from './reducers/settings'
 
 // import { composeWithDevTools } from 'redux-devtools-extension';
 
-
-const defaultState = { appName: 'social net', articles: null }
-
 const reducer = combineReducers({
 	auth,
 	common,
@@ -24,6 +21,5 @@ const reducer = combineReducers({
 const middleware = applyMiddleware(promiseMiddleware, localStorageMiddleware)
 
 const store = createStore(reducer, middleware)
-
 
 export default store
