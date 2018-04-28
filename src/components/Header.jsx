@@ -11,13 +11,10 @@ export default class Header extends Component {
 					</Link>
 					<ul className="nav navbar-nav pull-xs-right">
 						<li className="nav-item">
-							<Link to="/" className="nav-link">Home
-							</Link>
+							<Link to="/" className="nav-link">Home</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="login" className="nav-link">
-								Login
-							</Link>
+							<Link to="login" className="nav-link"> Login </Link>
 						</li>
 					</ul>
 				</div>
