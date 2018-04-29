@@ -88,7 +88,7 @@ class Register extends Component {
 										className="btn btn-lg btn-primary pull-xs-right"
 										type="submit"
 										disabled={ this.props.inProgress }>
-										Sign in
+										Sign Up
 									</button>
 
 								</fieldset>
