@@ -1,36 +1,15 @@
-import ArticleList from './ArticleList'
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router'
 import agent from '../agent'
 import { connect } from 'react-redux'
-
-const mapStateToProps = state => ({
-	...state.articleList,
-	currentUser: state.common.currentUser,
-	profile:     state.profile
-})
-
-const mapDispatchToProps = dispatch => ({
-	onFollow:   username => dispatch({
-		type:    'FOLLOW_USER',
-		payload: agent.Profile.follow(username)
-	}),
-	onLoad:     payload => dispatch({ type: 'PROFILE_PAGE_LOADED', payload }),
-	onSetPage: (page, payload) => dispatch({ type: 'SET_PAGE', page, payload}),
-	onUnfollow: username => dispatch({
-		type:    'UNFOLLOW_USER',
-		payload: agent.Profile.unfollow(username)
-	}),
-	onUnload:   () => dispatch({ type: 'PROFILE_PAGE_UNLOADED' })
-})
+import ArticleList from './ArticleList'
 
 const EditProfileSettings = props => {
 	if(props.isUser) {
 		return (
 			<Link
 				to="settings"
-				className="btn btn-sm btn-outline-secondary action-btn"> <i
-				className="ion-gear-a">''</i> Edit Profile Settings </Link>
+				className="btn btn-sm btn-outline-secondary action-btn"> Edit Profile Settings </Link>
 		)
 	}
 	return null
@@ -48,8 +27,8 @@ const FollowUserButton = props => {
 		classes += ' btn-outline-secondary'
 	}
 
-	const handleClick = ev => {
-		ev.preventDefault()
+	const handleClick = e => {
+		e.preventDefault()
 		if(props.user.following) {
 			props.unfollow(props.user.username)
 		} else {
@@ -61,12 +40,32 @@ const FollowUserButton = props => {
 		<button
 			className={ classes }
 			onClick={ handleClick }>
-			<i className="ion-plus-round"></i>&nbsp{ props.user.following ? 'Unfollow' : 'Follow' } { props.user.username }
+			<i className="ion-plus-round"/>&nbsp;{ props.user.following ? 'Unfollow' : 'Follow' } { props.user.username }
 		</button>
 	)
 }
 
-class Profile extends React.Component {
+const mapStateToProps = state => ({
+	...state.articleList,
+	currentUser: state.common.currentUser,
+	profile:     state.profile
+})
+
+const mapDispatchToProps = dispatch => ({
+	onFollow:   username => dispatch({
+		type:    'FOLLOW_USER',
+		payload: agent.Profile.follow(username)
+	}),
+	onLoad:     payload => dispatch({ type: 'PROFILE_PAGE_LOADED', payload }),
+	onSetPage:  (page, payload) => dispatch({ type: 'SET_PAGE', page, payload }),
+	onUnfollow: username => dispatch({
+		type:    'UNFOLLOW_USER',
+		payload: agent.Profile.unfollow(username)
+	}),
+	onUnload:   () => dispatch({ type: 'PROFILE_PAGE_UNLOADED' })
+})
+
+class Profile extends Component {
 	componentWillMount() {
 		this.props.onLoad(Promise.all([
 			agent.Profile.get(this.props.params.username),
@@ -76,11 +75,6 @@ class Profile extends React.Component {
 
 	componentWillUnmount() {
 		this.props.onUnload()
-	}
-
-	onSetPage(page) {
-		const promise = agent.Articles.byAuthor(this.props.profile.username, page)
-		this.props.onSetPage(page, promise)
 	}
 
 	renderTabs() {
@@ -101,6 +95,11 @@ class Profile extends React.Component {
 		)
 	}
 
+	onSetPage(page, payload) {
+		const promise = agent.Articles.byAuthor(this.props.profile.username, page, payload)
+		this.props.onSetPage(page, promise)
+	}
+
 	render() {
 		const profile = this.props.profile
 		if(!profile) {
@@ -112,7 +111,6 @@ class Profile extends React.Component {
 
 		return (
 			<div className="profile-page">
-
 				<div className="user-info">
 					<div className="container">
 						<div className="row">
@@ -145,9 +143,9 @@ class Profile extends React.Component {
 
 							<ArticleList
 								articles={ this.props.articles }
-								articlesCount={ this.props.articlesCount}
-								currentPage={this.props.currentPage}
-								onSetPage={this.onSetPage}/>
+								articlesCount={ this.props.articlesCount }
+								currentPage={ this.props.currentPage }
+								onSetPage={ this.onSetPage }/>
 						</div>
 
 					</div>
@@ -160,4 +158,4 @@ class Profile extends React.Component {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
 
-export { Profile as Profile, mapStateToProps as mapStateToProps }
+export { Profile, mapStateToProps }
