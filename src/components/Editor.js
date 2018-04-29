@@ -72,14 +72,6 @@ class Editor extends React.Component {
 		}
 	}
 
-	/**
-	 * React-router has an interesting quirk: if two routes have the
-	 * same component, react-router will reuse the component when
-	 * switching between the two. So if '/editor' and '/editor/slug'
-	 * both use the 'Editor' component, react-router won't recreate
-	 * the Editor component if you navigate to '/editor' from '/editor/slug'.
-	 * To work around this, we need the `componentWillReceiveProps()` hook.
-	 */
 	componentWillReceiveProps(nextProps) {
 		if(this.props.params.slug !== nextProps.params.slug) {
 			if(nextProps.params.slug) {
@@ -107,12 +99,9 @@ class Editor extends React.Component {
 				<div className="container page">
 					<div className="row">
 						<div className="col-md-10 offset-md-1 col-xs-12">
-
-							<ListErrors errors={ this.props.errors }></ListErrors>
-
+							<ListErrors errors={ this.props.errors }>ERROR</ListErrors>
 							<form>
 								<fieldset>
-
 									<fieldset className="form-group">
 										<input
 											className="form-control form-control-lg"
@@ -121,7 +110,6 @@ class Editor extends React.Component {
 											value={ this.props.title }
 											onChange={ this.changeTitle }/>
 									</fieldset>
-
 									<fieldset className="form-group">
 										<input
 											className="form-control"
@@ -130,12 +118,11 @@ class Editor extends React.Component {
 											value={ this.props.description }
 											onChange={ this.changeDescription }/>
 									</fieldset>
-
 									<fieldset className="form-group">
                     <textarea
 	                    className="form-control"
 	                    rows="8"
-	                    placeholder="Write your article (in markdown)"
+	                    placeholder="Write your article in markdown"
 	                    value={ this.props.body }
 	                    onChange={ this.changeBody }>
                     </textarea>
