@@ -8,6 +8,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
 import Settings from './components/Settings'
+import Article from './components/Article'
 
 
 ReactDOM.render((
@@ -18,6 +19,7 @@ ReactDOM.render((
 				<Route path="login" component={ Login } />
 				<Route path="register" component={ Register }/>
 				<Route path="settings" component={ Settings }/>
+				<Route path="article/:id" component={ Article } />
 			</Route>
 		</Router>
 	</Provider>
