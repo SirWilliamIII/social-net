@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import agent from '../../agent'
 import marked from 'marked'
 import CommentContainer from './CommentContainer'
+import ArticleMeta from './ArticleMeta'
 
 
 const mapStateToProps = state => ({
@@ -12,10 +13,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	onLoad:   payload =>
-		          dispatch({ type: 'ARTICLE_PAGE_LOADED', payload }),
-	onUnload: () =>
-		          dispatch({ type: 'ARTICLE_PAGE_UNLOADED' })
+	onLoad:   payload => dispatch({ type: 'ARTICLE_PAGE_LOADED', payload }),
+	onUnload: () => dispatch({ type: 'ARTICLE_PAGE_UNLOADED' })
 })
 
 class Article extends Component {
@@ -25,7 +24,7 @@ class Article extends Component {
 			agent.Comments.forArticle(this.props.params.id)
 		]))
 	}
-	componentWillMount() {
+	componentWillUnMount() {
 		this.props.onUnload()
 	}
 	render() {
@@ -33,8 +32,7 @@ class Article extends Component {
 			return null
 		}
 		const markup = { __html: marked(this.props.article.body) };
-		const canModify = this.props.currentUser &&
-			this.props.currentUser.username === this.props.article.author.username;
+		const canModify = this.props.currentUser && this.props.currentUser.username === this.props.article.author.username;
 		return (
 			<div className="article-page">
 				<div className="banner">
