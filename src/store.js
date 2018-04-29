@@ -1,6 +1,7 @@
 /* eslint-disable */
-import { promiseMiddleware, localStorageMiddleware } from './middleware'
 import { applyMiddleware, createStore, combineReducers } from 'redux'
+import { promiseMiddleware, localStorageMiddleware } from './middleware'
+
 import auth from './reducers/auth'
 import common from './reducers/common'
 import home from './reducers/home'

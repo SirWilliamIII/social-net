@@ -13,6 +13,7 @@ let tokenPlugin = req => {
 		req.set('authorization', `Token ${token}`)
 	}
 }
+
 const requests = {
 	get:  url =>
 		      superagent.get(`${API_ROOT}${url}`)
@@ -21,7 +22,12 @@ const requests = {
 	post: (url, body) =>
 		      superagent.post(`${API_ROOT}${url}`, body)
 			      .use(tokenPlugin)
-			      .then(res => res.body)
+			      .then(res => res.body),
+	put:  (url, body) => {
+		superagent.put(`${API_ROOT}${url}`, body)
+			.use(tokenPlugin)
+			.then(res => res.body)
+	}
 }
 
 
@@ -37,7 +43,7 @@ const Auth = {
 		          requests.post('/users/login', { user: { email, password } }),
 	register: (username, email, password) =>
 		          requests.post('/users', { user: { username, email, password } }),
-	save: user => requests.put('/user', { user })
+	save:     user => requests.put('/user', { user })
 }
 
 

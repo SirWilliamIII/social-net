@@ -135,9 +135,10 @@ class Settings extends Component {
 					<div className="row">
 						<div className="col-md-6 offset-md-3 col-xs-12">
 							<h1 className="text-xs-center">Your Settings</h1>
-							<ListErrors errors={ this.props.errors }>ERROR</ListErrors> <SettingsForm
-							currentUser={ this.props.currentUser }
-							onSubmitForm={ this.props.onSubmitForm }/>
+							<ListErrors errors={ this.props.errors }>ERROR</ListErrors>
+							<SettingsForm
+								currentUser={ this.props.currentUser }
+								onSubmitForm={ this.props.onSubmitForm }/>
 							<hr/>
 							<button
 								className="btn btn-outline-danger"

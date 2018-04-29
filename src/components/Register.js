@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import agent from '../agent'
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
 	}
 })
 
-class Register extends React.Component {
+class Register extends Component {
 	constructor() {
 		super()
 		this.changeEmail = event => this.props.onChangeEmail(event.target.value)
