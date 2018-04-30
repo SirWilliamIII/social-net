@@ -5,8 +5,8 @@ import agent from '../../agent'
 
 const YourFeedTab = props => {
 	if(props.token) {
-		const clickHandler = ev => {
-			ev.preventDefault()
+		const clickHandler = e => {
+			e.preventDefault()
 			props.onTabClick('feed', agent.Articles.feed())
 		}
 
@@ -14,7 +14,8 @@ const YourFeedTab = props => {
 			<li className="nav-item">
 				<a href=""
 					className={ props.tab === 'feed' ? 'nav-link active' : 'nav-link' }
-					onClick={ clickHandler }> Your Feed </a>
+					onClick={ clickHandler }>Your Feed
+				</a>
 			</li>
 		)
 	}
@@ -22,8 +23,8 @@ const YourFeedTab = props => {
 }
 
 const GlobalFeedTab = props => {
-	const clickHandler = ev => {
-		ev.preventDefault()
+	const clickHandler = e => {
+		e.preventDefault()
 		props.onTabClick('all', agent.Articles.all())
 	}
 	return (
@@ -31,7 +32,9 @@ const GlobalFeedTab = props => {
 			<a
 				href=""
 				className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
-				onClick={ clickHandler }> Global Feed </a>
+				onClick={ clickHandler }>
+				Global Feed
+			</a>
 		</li>
 	)
 }
@@ -43,7 +46,8 @@ const TagFilterTab = props => {
 
 	return (
 		<li className="nav-item">
-			<a href="" className="nav-link active"> <i className="ion-pound"></i> { props.tag }
+			<a href="" className="nav-link active"> <i className="ion-pound"/>
+				{ props.tag }
 			</a>
 		</li>
 	)
@@ -83,7 +87,7 @@ const MainView = props => {
 				articles={ props.articles }
 				articlesCount={props.articlesCount}
 				currentPage={props.currentPage}
-				onSetPage={props.onSetPage} />
+				onSetPage={onSetPage} />
 		</div>
 	)
 }

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import agent from '../agent'
 import { connect } from 'react-redux'
 import Header from './Header'
-import Home from './Home'
+
 
 const mapStateToProps = state => ({
 	appLoaded:   state.common.appLoaded,
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
 		            dispatch({ type: 'REDIRECT' })
 })
 
-class App extends React.Component {
+class App extends Component {
 	componentWillMount() {
 		const token = window.localStorage.getItem('jwt')
 		if(token) {

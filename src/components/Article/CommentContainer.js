@@ -1,17 +1,23 @@
+import React from 'react'
+import { Link } from 'react-router'
 import CommentInput from './CommentInput'
 import CommentList from './CommentList'
-import { Link } from 'react-router'
-import React from 'react'
+import ListErrors from '../ListErrors'
+
 
 const CommentContainer = props => {
+console.log('////////////////////')
+	console.log(props)
+	console.log('////////////////////')
 	if(props.currentUser) {
 		return (
 			<div className="col-xs-12 col-md-8 offset-md-2">
 				<div>
-					<ListErrors errors={ props.errors }></ListErrors> <CommentInput slug={ props.slug }
-					currentUser={ props.currentUser }/>
+					<ListErrors errors={ props.errors }/>
+					<CommentInput
+						slug={ props.slug }
+						currentUser={ props.currentUser }/>
 				</div>
-
 				<CommentList
 					comments={ props.comments }
 					slug={ props.slug }
@@ -22,8 +28,8 @@ const CommentContainer = props => {
 		return (
 			<div className="col-xs-12 col-md-8 offset-md-2">
 				<p>
-					<Link to="login">Sign in</Link>&nbspor&nbsp<Link
-					to="register">sign up</Link>&nbspto add comments on this article.
+					<Link to="login">Sign in</Link><Link
+					to="register">sign up</Link>&nbspto; add comments on this article.
 				</p>
 
 				<CommentList

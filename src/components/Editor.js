@@ -1,5 +1,5 @@
 import ListErrors from './ListErrors'
-import React from 'react'
+import React, { Component } from 'react'
 import agent from '../agent'
 import { connect } from 'react-redux'
 
@@ -7,11 +7,6 @@ const mapStateToProps = state => ({
 	...state.editor
 })
 
-/**
- * `mapDispatchToProps()` needs separate actions for adding/removing
- * tags, submitting an article, updating individual fields, and cleaning
- * up after navigating away from the page.
- */
 const mapDispatchToProps = dispatch => ({
 	onAddTag:      () =>
 		               dispatch({ type: 'ADD_TAG' }),
@@ -27,12 +22,11 @@ const mapDispatchToProps = dispatch => ({
 		               dispatch({ type: 'UPDATE_FIELD_EDITOR', key, value })
 })
 
-class Editor extends React.Component {
+class Editor extends Component {
 	constructor() {
 		super()
 
-		const updateFieldEvent =
-			      key => ev => this.props.onUpdateField(key, ev.target.value)
+		const updateFieldEvent = key => e => this.props.onUpdateField(key, e.target.value)
 		this.changeTitle = updateFieldEvent('title')
 		this.changeDescription = updateFieldEvent('description')
 		this.changeBody = updateFieldEvent('body')

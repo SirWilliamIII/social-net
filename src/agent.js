@@ -29,7 +29,7 @@ const Articles = {
 	all:         page => requests.get(`/articles?${limit(10, page)}`),
 	get:         slug => requests.get(`/articles/${slug}`),
 	del:         slug => requests.del(`/articles/${slug}`),
-	byAuthor:    (author, page) => requests.get(`articles?author=${ encodeURIComponent(author)}&${limit(10, page)}`),
+	byAuthor:    (author, page) => requests.get(`/articles?author=${ encodeURIComponent(author)}&${limit(10, page)}`),
 	favoritedBy: (author, page) => requests.get(`/articles?favorited=${ encodeURIComponent(author)}&${limit(10, page)}`),
 	feed:        page => requests.get(`/articles/feed?${limit(10, page)}`),
 	byTag:       (tag, page) => requests.get(`/articles?tag=${ encodeURIComponent(tag)}&${limit(10, page)}`),
@@ -47,7 +47,7 @@ const Auth = {
 const Comments = {
 	forArticle: slug => requests.get(`/articles/${slug}/comments`),
 	create:     (slug, comment) => requests.post(`/articles/${slug}/comments`, { comment }),
-	delete:     (slug, commentId) => requests.del(`articles/${slug}/comments/${commentId}`)
+	delete:     (slug, commentId) => requests.del(`/articles/${slug}/comments/${commentId}`)
 }
 
 const Profile = {

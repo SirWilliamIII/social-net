@@ -1,7 +1,11 @@
 import React from 'react'
 import Comment from './Comment'
 
+
 const CommentList = props => {
+	console.log('!!!!!!!!!!!!!')
+	console.log(props)
+	console.log('!!!!!!!!!!!!!')
 	return (
 		<div>
 			{

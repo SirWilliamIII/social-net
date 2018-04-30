@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import agent from '../../agent'
 import marked from 'marked'
@@ -46,7 +45,7 @@ class Article extends Component {
 				<div className="container page">
 					<div className="row article-content">
 						<div className="col-xs-12">
-							<div dangerouslySetInnerHTML={ markup }>''</div>
+							<div dangerouslySetInnerHTML={ markup }/>
 							<ul className="tag-list">
 								{
 									this.props.article.tagList.map(tag => {

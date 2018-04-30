@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import agent from '../agent'
 import { connect } from 'react-redux'
-import store from '../store'
 import ListErrors from './ListErrors'
 
 class SettingsForm extends Component {
@@ -28,7 +26,7 @@ class SettingsForm extends Component {
 			if(!user.password) {
 				delete user.password
 			}
-			this.props.submitForm(user)
+			this.props.onSubmitForm(user)
 		}
 	}
 	componentWillMount() {
@@ -57,16 +55,14 @@ class SettingsForm extends Component {
 		return (
 			<form onSubmit={ this.submitForm }>
 				<fieldset>
-
 					<fieldset className="form-group">
 						<input
 							className="form-control"
 							type="text"
 							placeholder="URL of profile picture"
 							value={ this.state.image }
-							onChange={ this.updateState('image') }/>
+							onChange={ this.updateState("image") }/>
 					</fieldset>
-
 					<fieldset className="form-group">
 						<input
 							className="form-control form-control-lg"
@@ -77,13 +73,13 @@ class SettingsForm extends Component {
 					</fieldset>
 
 					<fieldset className="form-group">
-            <textarea
-	            className="form-control form-control-lg"
-	            rows="8"
-	            placeholder="Short bio about you"
-	            value={ this.state.bio }
-	            onChange={ this.updateState('bio') }>
-            </textarea>
+                        <textarea
+	                        className="form-control form-control-lg"
+	                        rows="8"
+	                        placeholder="Short bio about you"
+	                        value={ this.state.bio }
+	                        onChange={ this.updateState('bio') }>
+			            </textarea>
 					</fieldset>
 					<fieldset className="form-group">
 						<input
@@ -120,11 +116,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	onClickLogout: () => dispatch({ type: 'LOGOUT' }),
-	onSubmitForm:  user =>
-		               dispatch({ type: 'SETTINGS_SAVED', payload: agent.Auth.save(user) }),
+	onSubmitForm:  user => dispatch({ type: 'SETTINGS_SAVED', payload: agent.Auth.save(user) }),
 	onUnload:      () => dispatch({ type: 'SETTINGS_PAGE_UNLOADED' })
 })
-
 
 class Settings extends Component {
 	render() {
@@ -134,9 +128,10 @@ class Settings extends Component {
 					<div className="row">
 						<div className="col-md-6 offset-md-3 col-xs-12">
 							<h1 className="text-xs-center">Your Settings</h1>
-							<ListErrors errors={ this.props.errors }>ERROR</ListErrors> <SettingsForm
-							currentUser={ this.props.currentUser }
-							onSubmitForm={ this.props.onSubmitForm }/>
+							<ListErrors errors={ this.props.errors } />
+							<SettingsForm
+								currentUser={ this.props.currentUser }
+								onSubmitForm={ this.props.onSubmitForm }/>
 							<hr/>
 							<button
 								className="btn btn-outline-danger"

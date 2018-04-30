@@ -6,19 +6,22 @@ const ArticlePreview = props => {
 	return (
 		<div className="article-preview">
 			<div className="article-meta">
-				<Link to={ `@${article.author.username}` }> <img src={ article.author.image }/> </Link>
-
+				<Link to={ `@${article['author'].username}` }>
+					<img src={article['author'].image} alt=''/>
+				</Link>
 				<div className="info">
-					<Link className="author" to={ `@${article.author.username}` }>
-						{ article.author.username }
-					</Link> <span className="date">
-            { new Date(article.createdAt).toDateString() }
-          </span>
+					<Link className="author" to={ `@${article['author'].username}` }>
+						{ article['author'].username }
+					</Link>
+					<span className="date">
+						{ new Date(article.createdAt).toDateString() }
+					</span>
 				</div>
 
 				<div className="pull-xs-right">
 					<button className="btn btn-sm btn-outline-primary">
-						<i className="ion-heart"></i> { article.favoritesCount }
+						<i className="ion-heart"></i>
+						{ article.favoritesCount }
 					</button>
 				</div>
 			</div>

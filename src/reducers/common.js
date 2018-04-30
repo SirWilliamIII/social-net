@@ -1,10 +1,10 @@
-/* eslint-disable */
+/*  eslint-disable */
 const defaultState = {
 	appName: 'social experiment',
 	token:   null
 }
 
-export default (state = defaultState, action) => {
+export default (state=defaultState, action) => {
 	switch (action.type) {
 		case 'APP_LOAD':
 			return {

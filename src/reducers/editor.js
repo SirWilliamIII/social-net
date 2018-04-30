@@ -1,3 +1,4 @@
+/*  eslint-disable */
 export default (state = {}, action) => {
 	switch (action.type) {
 		case 'EDITOR_PAGE_LOADED':
