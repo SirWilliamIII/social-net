@@ -14,8 +14,7 @@ const YourFeedTab = props => {
 			<li className="nav-item">
 				<a href=""
 					className={ props.tab === 'feed' ? 'nav-link active' : 'nav-link' }
-					onClick={ clickHandler }>Your Feed
-				</a>
+					onClick={ clickHandler }>Your Feed </a>
 			</li>
 		)
 	}
@@ -32,9 +31,7 @@ const GlobalFeedTab = props => {
 			<a
 				href=""
 				className={ props.tab === 'all' ? 'nav-link active' : 'nav-link' }
-				onClick={ clickHandler }>
-				Global Feed
-			</a>
+				onClick={ clickHandler }> Global Feed </a>
 		</li>
 	)
 }
@@ -46,8 +43,7 @@ const TagFilterTab = props => {
 
 	return (
 		<li className="nav-item">
-			<a href="" className="nav-link active"> <i className="ion-pound"/>
-				{ props.tag }
+			<a href="" className="nav-link active"> <i className="ion-pound"/> { props.tag }
 			</a>
 		</li>
 	)
@@ -59,9 +55,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	onSetPage: (tab, p) => dispatch({
-		type: 'SET_PAGE',
-		page: p,
+	onSetPage:  (tab, p) => dispatch({
+		type:    'SET_PAGE',
+		page:    p,
 		payload: tab === 'feed' ? agent.Articles.feed(p) : agent.Articles.all(p)
 	}),
 	onTabClick: (tab, payload) => dispatch({ type: 'CHANGE_TAB', tab, payload })
@@ -79,15 +75,16 @@ const MainView = props => {
 						onTabClick={ props.onTabClick }/>
 					<GlobalFeedTab
 						tab={ props.tab }
-						onTabClick={ props.onTabClick } />
-					<TagFilterTab tag={ props.tag }/>
+						onTabClick={ props.onTabClick }/>
+					<TagFilterTab
+						tag={ props.tag }/>
 				</ul>
 			</div>
 			<ArticleList
 				articles={ props.articles }
-				articlesCount={props.articlesCount}
-				currentPage={props.currentPage}
-				onSetPage={onSetPage} />
+				articlesCount={ props.articlesCount }
+				currentPage={ props.currentPage }
+				onSetPage={ onSetPage }/>
 		</div>
 	)
 }
