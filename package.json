@@ -1,7 +1,14 @@
 {
-  "name": "social-net",
-  "version": "0.1.0",
+  "name": "social-net-v2",
+  "version": "1.0.0",
   "private": true,
+  "description": "twitterish react/redux app",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "devDependencies": {
     "react-scripts": "0.6.1"
   },
@@ -18,10 +25,14 @@
     "superagent": "^2.3.0",
     "superagent-promise": "^1.1.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirWilliamIII/social-net.git"
+  },
+  "author": "Will Carpenter <willcarpenteriii@gmail.com> (https://willcarpenter.site)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SirWilliamIII/social-net/issues"
+  },
+  "homepage": "https://github.com/SirWilliamIII/social-net#readme"
 }
