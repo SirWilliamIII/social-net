@@ -11,7 +11,7 @@ import articleList from './reducers/articleList'
 import profile from './reducers/profile'
 import editor from './reducers/editor'
 
-// import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const reducer = combineReducers({
 	article,
@@ -28,6 +28,6 @@ const reducer = combineReducers({
 
 const middleware = applyMiddleware(promiseMiddleware, localStorageMiddleware)
 
-const store = createStore(reducer, middleware)
+const store = createStore(reducer, composeWithDevTools(middleware))
 
 export default store

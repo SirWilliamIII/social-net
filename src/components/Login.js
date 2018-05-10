@@ -29,8 +29,8 @@ class Login extends Component {
 	}
 
 	render() {
-		const email = this.props.email
-		const password = this.props.password
+		let email = this.props.email
+		let password = this.props.password
 		return (
 			<div className="auth-page">
 				<div className="container page">
@@ -60,12 +60,12 @@ class Login extends Component {
 											value={ password }
 											onChange={ this.changePassword }/>
 									</fieldset>
-									<button
-										className="btn btn-lg btn-primary pull-xs-right"
-										type="submit"
-										disabled={ this.props.inProgress }>
-										Sign in
-									</button>
+										<button
+											className="btn btn-lg btn-primary pull-xs-right"
+											type="submit"
+											disabled={ this.props.inProgress }>
+											Sign in
+										</button>
 								</fieldset>
 							</form>
 						</div>

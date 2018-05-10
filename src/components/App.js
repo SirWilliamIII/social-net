@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import agent from '../agent'
 import { connect } from 'react-redux'
 import Header from './Header'
+import PropTypes from 'prop-types'
 
 
 const mapStateToProps = state => ({
@@ -21,6 +22,7 @@ const mapDispatchToProps = dispatch => ({
 class App extends Component {
 	componentWillMount() {
 		const token = window.localStorage.getItem('jwt')
+		console.log(`Token ${token}`)
 		if(token) {
 			agent.setToken(token)
 		}
@@ -56,7 +58,7 @@ class App extends Component {
 }
 
 App.contextTypes = {
-	router: React.PropTypes.object.isRequired
+	router: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

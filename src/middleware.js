@@ -3,8 +3,8 @@ import agent from './agent'
 const promiseMiddleware = store => next => action => {
 	if(isPromise(action.payload)) {
 		store.dispatch({ type: 'ASYNC_START', subtype: action.type })
-		action.payload.then(
-			res => {
+		action.payload
+			.then(res => {
 				console.log('YES!')
 				action.payload = res
 				store.dispatch(action)
@@ -25,16 +25,18 @@ function isPromise(v) {
 }
 
 const localStorageMiddleware = store => next => action => {
+
 	if(action.type === 'REGISTER' || action.type === 'LOGIN') {
 		if(!action.error) {
-			window.localStorage.setItem('jwt', action.payload.user.token);
-			agent.setToken(action.payload.user.token);
+			console.log('NO ERROR')
+			window.localStorage.setItem('jwt', action.payload.text.user.token);
+			agent.setToken(action.text.payload.user.token);
 		}
 	} else if(action.type === 'LOGOUT') {
 		window.localStorage.setItem('jwt', '');
 		agent.setToken(null);
 	}
-
+	console.log(`action.payload: ${action.payload}`)
 	next(action);
 };
 

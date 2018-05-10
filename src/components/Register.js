@@ -14,9 +14,10 @@ const mapDispatchToProps = dispatch => ({
 	onChangeUsername: value =>
 		                  dispatch({ type: 'UPDATE_FIELD_AUTH', key: 'username', value }),
 	onSubmit:         (username, email, password) => {
-		const payload = agent.Auth.register(username, email, password)
+		let payload = agent.Auth.register(username, email, password)
 		dispatch({ type: 'REGISTER', payload })
-	}
+	},
+	onUnload:         () => dispatch({ type: 'LOGIN_PAGE_UNLOADED' })
 })
 
 class Register extends Component {
@@ -61,7 +62,7 @@ class Register extends Component {
 											placeholder="Username"
 											value={ this.props.username }
 											onChange={ this.changeUsername }
-											autoComplete="off"/>
+											autoComplete="on"/>
 									</fieldset>
 
 									<fieldset className="form-group">
@@ -71,7 +72,7 @@ class Register extends Component {
 											placeholder="Email"
 											value={ this.props.email }
 											onChange={ this.changeEmail }
-											autoComplete="off"/>
+											autoComplete="email"/>
 									</fieldset>
 
 									<fieldset className="form-group">

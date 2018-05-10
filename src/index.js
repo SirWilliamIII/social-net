@@ -18,14 +18,14 @@ ReactDOM.render((
 		<Router history={ hashHistory }>
 			<Route path="/" component={ App }>
 				<IndexRoute component={ Home }/>
-				<Route path="login" component={ Login } />
-				<Route path="register" component={ Register }/>
-				<Route path="settings" component={ Settings }/>
-				<Route path="article/:id" component={ Article } />
-				<Route path="@:username" component={ Profile }/>
-				<Route path="@:username/favorites" component={ProfileFavorites} />
-                <Route path="editor" component={Editor} />
-                <Route path="editor/:slug" component={Editor} />
+				<Route path="/login" component={ Login } />
+				<Route path="/register" component={ Register }/>
+				<Route path="/settings" component={ Settings }/>
+				<Route path="/article/:id" component={ Article } />
+				<Route path="/@:username" component={ Profile }/>
+				<Route path="/@:username/favorites" component={ProfileFavorites} />
+                <Route path="/editor" component={Editor} />
+                <Route path="/editor/:slug" component={Editor} />
 			</Route>
 		</Router>
 	</Provider>

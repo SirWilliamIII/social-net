@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import agent from '../../agent'
 import { connect } from 'react-redux'
 
@@ -6,7 +6,7 @@ const mapDispatchToProps = dispatch => ({
 	onSubmit: payload => dispatch({ type: 'ADD_COMMENT', payload })
 })
 
-class CommentInput extends React.Component {
+class CommentInput extends Component {
 	constructor() {
 		super()
 		this.state = {
